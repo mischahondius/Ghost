@@ -26,3 +26,5 @@ Java, Android App Studio 1.0.2, XML, Gradle.
 Libraries used:
 Android API 21 Platform
 Java 1.7.0_75
+
+![Alt text](/doc/img.jpg)
