@@ -1,5 +1,46 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+
+
+    <item
+        android:id="@+id/Opties"
+        android:title="@string/Opties"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText"
+        android:icon="@drawable/settings"
+
+        />
+
+    <item
+        android:id="@+id/restart"
+        android:title="Restart"
+        app:showAsAction="never"
+        android:orderInCategory="101"
+        />
+
+
+    <item
+        android:id="@+id/players"
+        android:title="Players"
+        app:showAsAction="never"
+        android:orderInCategory="102"
+        />
+
+    <item
+        android:id="@+id/language"
+        android:title="Language"
+        app:showAsAction="never"
+        android:orderInCategory="103"
+        />
+
+    <item
+        android:id="@+id/highscores"
+        android:title="Highscores"
+        app:showAsAction="never"
+        android:orderInCategory="104"
+        />
+
+
 </menu>
