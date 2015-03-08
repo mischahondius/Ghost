@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
+
+    //initialize word
+    public String currentWord = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,46 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.Opties) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    //add letter 
+    public void addLetter (char letterToAdd){
+        currentWord = currentWord + letterToAdd;  
+        
+        //update textView huidigwoord
+        //get tv
+        TextView currentWordTV = (TextView) findViewById(R.id.huidigWoord);
+        
+        //set new word
+        currentWordTV.setText(currentWord);
+        
+        }
+    
+    //on letter clicked
+    public void letterClicked(View letter) {
+        switch (letter.getId()) {
+            case R.id.Abtn:
+                
+                char letterChar = 'A';
+                
+                //Add letter
+                addLetter (letterChar);
+                
+                Toast.makeText(this, currentWord, Toast.LENGTH_SHORT).show();
+                               
+                break;
+            case R.id.Bbtn:
+
+                break;
+            case R.id.Cbtn:
+
+                break;
+        }
+    }
+
 }

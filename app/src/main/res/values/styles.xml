@@ -16,7 +16,7 @@
     </style>
 
     <style name="HetWoord">
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
          </style>
