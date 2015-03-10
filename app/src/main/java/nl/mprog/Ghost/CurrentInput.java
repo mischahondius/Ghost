@@ -21,29 +21,34 @@ public class CurrentInput{
         inputSize = 0;
     }
     
-//    //Function -> Add Letter
-//    public void addLetter (char letterToAdd, TextView currentWordTV){
-//
-//
-//        theCurrentInput = theCurrentInput + letterToAdd;
-//
-//
+    //Function -> Add Letter
+    public void addLetter (char letterToAdd){
+
+
+//        this.theCurrentInput = this.theCurrentInput + letterToAdd;
+
 //        //set new word, update
 //        currentWordTV.setText(theCurrentInput);
-//
-//        //Set size to new size
-//        inputSize++;
-//
-//    }
+
+        //Set size to new size
+        this.inputSize++;
+
+    }
+
+
+//      Function get current input
+        public String get(){
+            return this.theCurrentInput;
+        }
 //
 //    //Function-> Clear current input
 //    public void clear() {
 //        theCurrentInput = "";
 //    }
 //
-//    //Function getSize
-//    public int getSize () {
-//        return inputSize;
-//    }
+    //Function getSize
+    public int getSize () {
+        return this.inputSize;
+    }
     
 }

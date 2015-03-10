@@ -39,7 +39,7 @@ public class MainActivity extends Activity{
         dutchDictionary = new Dictionary(this);
 
         //Load theCurrentWord
-        CurrentInput theCurrentWord = new CurrentInput();
+        theCurrentWord = new CurrentInput();
 
     }
 
@@ -75,23 +75,45 @@ public class MainActivity extends Activity{
 
                 //test dictionary toast
 
-                if (dutchDictionary.isWord("test")) {
-
-                   Toast.makeText(this, "contains the word test" ,Toast.LENGTH_LONG).show();
-                }
-
-                else  {
-
-                    Toast.makeText(this, "Does NOT contain nllkoo" ,Toast.LENGTH_LONG).show();
-                }
-
-
-//                //is validWord?
+//                if (dutchDictionary.isWord("test")) {
 //
-//                //Add letter
-//                theCurrentWord.addLetter(letterChar, );
+//                   Toast.makeText(this, "contains the word test" ,Toast.LENGTH_LONG).show();
+//                }
 //
-//                break;
+//                else  {
+//
+//                    Toast.makeText(this, "Does NOT contain nllkoo" ,Toast.LENGTH_LONG).show();
+//                }
+
+                //is validWord?
+                
+                //Get textview to change
+                TextView huidigWoordTV;
+                huidigWoordTV = (TextView)findViewById(R.id.huidigWoord);
+                
+                if (huidigWoordTV == null) {
+
+                    Toast.makeText(this, "huidigwoord is leeg", Toast.LENGTH_LONG).show();
+                }
+                
+                else {
+                //Add letter
+                theCurrentWord.addLetter(letterChar);
+
+                //Get size test
+                String huidigeSize = String.valueOf(theCurrentWord.getSize());
+                Toast.makeText(this, huidigeSize, Toast.LENGTH_SHORT).show();
+
+//
+//                  //set new word, update
+//                   huidigWoordTV.setText(theCurrentWord.get());
+
+                }
+                
+                
+                break;
+            
+            
 //            case R.id.Bbtn:
 //                letterChar = 'B';
 //
