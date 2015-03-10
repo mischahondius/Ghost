@@ -16,25 +16,31 @@ import java.io.InputStreamReader;
 import java.security.PublicKey;
 import java.util.HashSet;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
-    //initialize word
-    public String currentWord = "";
+    //initialize theCurrentWord
+    public CurrentInput theCurrentWord;
 
     //initialize letterchar
-    char letterChar;
-
-    //the dictionary initialize
-    //Create hashset for dictionary
-    public HashSet<String> dutchDictionary = new HashSet<String>();
+    public char letterChar;
     
+    //initialize dictionary
+    public Dictionary dutchDictionary;
+
+    
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //get and save dictionary
-        dutchDictionary = Dictionary.getDictionary(this);
+        //Load dictionary
+        dutchDictionary = new Dictionary(this);
+
+        //Load theCurrentWord
+        CurrentInput theCurrentWord = new CurrentInput();
+
     }
 
     @Override
@@ -58,345 +64,335 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    
-    
 
-
-    
-    //isValid letter check function
-    public boolean isValid (char lettertoAdd){
-        
-        //
-        return true;
-    }
-    
-    //add letter 
-    public void addLetter (char letterToAdd){
-        currentWord = currentWord + letterToAdd;  
-        
-        //update textView huidigwoord
-        //get tv
-        TextView currentWordTV = (TextView) findViewById(R.id.huidigWoord);
-        
-        //set new word
-        currentWordTV.setText(currentWord);
-        
-        }
-    
     //on letter clicked
     public void letterClicked(View letter) {
         switch (letter.getId()) {
             case R.id.Abtn:
-                
-                //get text                             
-                letterChar = 'A';
-                
-                //test dictionary toast
-                
-                
-                //is validWord?
-                
-                //Add letter
-                addLetter (letterChar);
-                
-                break;
-            case R.id.Bbtn:
-                letterChar = 'B';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-            case R.id.Cbtn:
-
-                //get text                             
-                letterChar = 'C';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Dbtn:
-
-                //get text                             
-                letterChar = 'D';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Ebtn:
-
-                //get text                             
-                letterChar = 'E';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Fbtn:
-
-                //get text                             
-                letterChar = 'F';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Gbtn:
-
-                //get text                             
-                letterChar = 'G';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Hbtn:
-
-                //get text                             
-                letterChar = 'H';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Ibtn:
-
-                //get text                             
-                letterChar = 'I';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Jbtn:
-
-                //get text                             
-                letterChar = 'J';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Kbtn:
-
-                //get text                             
-                letterChar = 'K';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Lbtn:
-
-                //get text                             
-                letterChar = 'L';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Mbtn:
-
-                //get text                             
-                letterChar = 'M';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Nbtn:
-
-                //get text                             
-                letterChar = 'N';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Obtn:
-
-                //get text                             
-                letterChar = 'O';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Pbtn:
-
-                //get text                             
-                letterChar = 'P';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Qbtn:
-
-                //get text                             
-                letterChar = 'Q';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Rbtn:
-
-                //get text                             
-                letterChar = 'R';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Sbtn:
-
-                //get text                             
-                letterChar = 'S';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Tbtn:
-
-                //get text                             
-                letterChar = 'T';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Ubtn:
-
-                //get text                             
-                letterChar = 'U';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Vbtn:
 
                 //get text
-                letterChar = 'V';
+                letterChar = 'A';
 
-                //is validWord?
+                //test dictionary toast
 
-                //Add letter
-                addLetter (letterChar);
+                if (dutchDictionary.isWord("test")) {
 
-                break;
+                   Toast.makeText(this, "contains the word test" ,Toast.LENGTH_LONG).show();
+                }
 
-            case R.id.Wbtn:
+                else  {
 
-                //get text                             
-                letterChar = 'W';
+                    Toast.makeText(this, "Does NOT contain nllkoo" ,Toast.LENGTH_LONG).show();
+                }
 
-                //is validWord?
 
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Xbtn:
-
-                //get text                             
-                letterChar = 'X';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Ybtn:
-
-                //get text                             
-                letterChar = 'Y';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
-
-            case R.id.Zbtn:
-
-                //get text                             
-                letterChar = 'Z';
-
-                //is validWord?
-
-                //Add letter
-                addLetter (letterChar);
-
-                break;
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar, );
+//
+//                break;
+//            case R.id.Bbtn:
+//                letterChar = 'B';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar));
+//
+//                //test toast current inputsize
+//                Toast.makeText(this, "Current inputsize = " + theCurrentWord.getSize(),Toast.LENGTH_LONG).show();
+//
+//                break;
             
+//            case R.id.Cbtn:
+//
+//                //get text
+//                letterChar = 'C';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Dbtn:
+//
+//                //get text
+//                letterChar = 'D';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Ebtn:
+//
+//                //get text
+//                letterChar = 'E';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Fbtn:
+//
+//                //get text
+//                letterChar = 'F';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Gbtn:
+//
+//                //get text
+//                letterChar = 'G';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Hbtn:
+//
+//                //get text
+//                letterChar = 'H';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Ibtn:
+//
+//                //get text
+//                letterChar = 'I';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Jbtn:
+//
+//                //get text
+//                letterChar = 'J';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Kbtn:
+//
+//                //get text
+//                letterChar = 'K';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Lbtn:
+//
+//                //get text
+//                letterChar = 'L';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Mbtn:
+//
+//                //get text
+//                letterChar = 'M';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Nbtn:
+//
+//                //get text
+//                letterChar = 'N';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Obtn:
+//
+//                //get text
+//                letterChar = 'O';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Pbtn:
+//
+//                //get text
+//                letterChar = 'P';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Qbtn:
+//
+//                //get text
+//                letterChar = 'Q';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Rbtn:
+//
+//                //get text
+//                letterChar = 'R';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Sbtn:
+//
+//                //get text
+//                letterChar = 'S';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Tbtn:
+//
+//                //get text
+//                letterChar = 'T';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Ubtn:
+//
+//                //get text
+//                letterChar = 'U';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Vbtn:
+//
+//                //get text
+//                letterChar = 'V';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Wbtn:
+//
+//                //get text
+//                letterChar = 'W';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Xbtn:
+//
+//                //get text
+//                letterChar = 'X';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Ybtn:
+//
+//                //get text
+//                letterChar = 'Y';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+//
+//            case R.id.Zbtn:
+//
+//                //get text
+//                letterChar = 'Z';
+//
+//                //is validWord?
+//
+//                //Add letter
+//                theCurrentWord.addLetter(letterChar);
+//
+//                break;
+
         }
     }
 

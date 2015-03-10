@@ -1,49 +1,62 @@
 package nl.mprog.Ghost;
 
 import android.content.Context;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
-/**
- * Created by Equifilm on 9-3-2015.
- */
-
-public class Dictionary {
-
-    //Dictionary inladen
-    public static HashSet getDictionary(Context ctx)
-    {
-
-        //Create hashset for dictionary
-        HashSet<String> dutchDictionary = new HashSet<String>();
+public class Dictionary{
+    
+    //Dictionary contains:
+    public HashSet<String> words;
+    
+    //Dictionary constructor
+    public Dictionary(Context ctx){
+              
+        //temp hashset
+        HashSet<String> tempHashSet = new HashSet<String>();
 
         InputStream inputStream = ctx.getResources().openRawResource(R.raw.dutch);
-
         InputStreamReader inputreader = new InputStreamReader(inputStream);
         BufferedReader buffreader = new BufferedReader(inputreader);
         String line;
 
         try {
             while (( line = buffreader.readLine()) != null) {
-
-
-                dutchDictionary.add(line);
-
-
-
+                tempHashSet.add(line);
             }
         } catch (IOException e) {
-            return null;
-        }
-        
-        return dutchDictionary;
+            return;
 
+            
+        }
+
+        //Initialize Words    
+        this.words = tempHashSet;
 
     }
 
+    //contains word? function
+    public boolean isWord (String word){
 
+        //if it is in dictionary = word
+        if (words.contains(word)){
+            return true;
+        }
+
+        else {
+            // If it does not contain word
+            return false;
+        }
+    }
 }
+    
+    
+//    //isValid letter check function
+//    public boolean isValid (char lettertoAdd){
+//
+//        //
+//        return true;
+//    }
