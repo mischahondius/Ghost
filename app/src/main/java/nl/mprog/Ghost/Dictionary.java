@@ -42,7 +42,7 @@ public class Dictionary{
     public boolean isWord (String word){
 
         //if it is in dictionary = word
-        if (words.contains(word)){
+        if (this.words.contains(word)){
             return true;
         }
 

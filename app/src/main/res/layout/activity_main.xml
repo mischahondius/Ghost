@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="huidigwoord"
+        android:text="GHOST"
         android:id="@+id/huidigWoord"
         android:layout_below="@+id/huidigeGebruiker"
         android:layout_centerHorizontal="true"
