@@ -8,5 +8,9 @@
     <string name="Opties">Opties</string>
     <string name="winnaarToast">We hebben een winnaar</string>
     <string name="weSpelenDoorToast">We spelen door</string>
+    <string name="restartText">Restart</string>
+    <string name="playersTxt">Players</string>
+    <string name="languageTxt">Language</string>
+    <string name="highscoresTxt">Highscores</string>
 
 </resources>

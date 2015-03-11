@@ -1,7 +1,6 @@
 package nl.mprog.Ghost;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,13 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.security.PublicKey;
-import java.util.HashSet;
 
 public class MainActivity extends Activity {
 
@@ -62,13 +54,17 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.Opties) {
-            return true;
+        if (id == R.id.restart) {
+            theCurrentWord.clear(huidigWoordTV);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    //On restart clicked
+    public void restartClicked(){
+        theCurrentWord.clear(huidigWoordTV);}
+    
     //on letter clicked
     public void letterClicked(View letter) {
 
