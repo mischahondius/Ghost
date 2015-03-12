@@ -29,4 +29,16 @@ public class Player {
      }
     
     
+    //give point method
+    public void givePoint(){
+        this.points++;
+        
+    }
+
+    //Get points tmethod
+    public int getPoints(){
+        return this.points;
+    }
+
+
 }

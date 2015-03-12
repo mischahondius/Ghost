@@ -55,14 +55,11 @@ public class MainActivity extends Activity {
         //TEMP hardcode create player2
         player2 = new Player("Hardcoded Naam2");
         
-        //Create new game
-        currentGame = new Game(player1, player2);    
-        
         //Get textView huidigeSpelerTV
         huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
-        
-        //Change huidigeSpelerTV to player1
-        huidigeSpelerTV.setText(currentGame.getTurn().getName());
+
+        //Create new game
+        currentGame = new Game(player1, player2, huidigeSpelerTV);
     }
 
     @Override
@@ -81,15 +78,23 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.restart) {
-            theCurrentWord.clear(huidigWoordTV);
+            restart();
         }
 
         return super.onOptionsItemSelected(item);
     }
+    
+    //Restart method
+    public void restart(){
+        //Clear word
+        theCurrentWord.clear(huidigWoordTV);
 
-    //On restart clicked
-    public void restartClicked(){
-        theCurrentWord.clear(huidigWoordTV);}
+        //Create new game
+        currentGame = new Game(player1, player2, huidigeSpelerTV);
+
+        //TV update who has the turn
+        huidigeSpelerTV.setText(currentGame.getTurn().getName());
+     }
     
     //on letter clicked
     public void letterClicked(View letter) {
@@ -98,528 +103,27 @@ public class MainActivity extends Activity {
         Button currentBtn = (Button) findViewById(letter.getId());
         letterChar = currentBtn.getText().charAt(0);
 
-        switch (letter.getId()) {
-            case R.id.Abtn:
+        //check letter
+        //->nog schrijven
 
-                //check letter
-                //->nog schrijven
+        //Als letter ok -> Add letter + pass textview to update
+        theCurrentWord.addLetter(letterChar, huidigWoordTV);
 
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
+        //Check of woord gevormd en of woord lang genoeg is-> speler af
+        if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
 
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
+            //Opponent won, appoint a point to opponent
+            currentGame.PtToOpponent();
 
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
+            //Toast winner and how many points winner has in total
+            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                    currentGame.changeTurn();
-                    huidigeSpelerTV.setText(currentGame.getTurn().getName());
-                }
-                break;
+            //Restart game
+            restart();
 
-            case R.id.Bbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Cbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Dbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Ebtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Fbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Gbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Hbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Ibtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Jbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Kbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Lbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Mbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Nbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Obtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Pbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Qbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Rbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Sbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Tbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Ubtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Vbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Wbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Xbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Ybtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.Zbtn:
-
-                //check letter
-                //->nog schrijven
-
-                //Als letter ok -> Add letter + pass textview to update
-                theCurrentWord.addLetter(letterChar, huidigWoordTV);
-
-                //Check of woord gevormd en of woord lang genoeg is-> speler af
-                if ((dutchDictionary.isWord(theCurrentWord.get().toLowerCase())) && (theCurrentWord.getSize() > 3)) {
-                    Toast.makeText(this, getString(R.string.winnaarToast), Toast.LENGTH_SHORT).show();
-
-                    //clear (moet restart funtie worden)
-                    theCurrentWord.clear(huidigWoordTV);
-
-                } else {
-                    Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
-                }
-                break;
+        } else {
+            //Change turn, change turn TV
+            currentGame.changeTurn();
         }
     }
 }
