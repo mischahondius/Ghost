@@ -51,9 +51,15 @@ public class Dictionary{
             return false;
         }
     }
+
+    //get Words method
+    public HashSet<String> getWords(){return words;}
+
 }
     
-    
+        
+
+
 //    //isValid letter check function
 //    public boolean isValid (char lettertoAdd){
 //
