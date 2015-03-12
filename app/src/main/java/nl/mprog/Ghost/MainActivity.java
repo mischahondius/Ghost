@@ -20,8 +20,20 @@ public class MainActivity extends Activity {
     //initialize dictionary
     public Dictionary dutchDictionary;
 
-    //Get textview to change
+    //initialize textview huidigwoord to change
     public TextView huidigWoordTV;
+    
+    //initialize TV huidigeSpelerTV
+    public TextView huidigeSpelerTV;
+    
+    //Initialize currentGame
+    public Game currentGame;
+    
+    //Initialize player1
+    public Player player1;
+    
+    //initialize player2
+    public Player player2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +48,21 @@ public class MainActivity extends Activity {
 
         //Load textview huidigwoord
         huidigWoordTV = (TextView) findViewById(R.id.huidigWoord);
-
+        
+        //TEMP hardcode create player1
+        player1 = new Player("Hardcoded Naam1");
+        
+        //TEMP hardcode create player2
+        player2 = new Player("Hardcoded Naam2");
+        
+        //Create new game
+        currentGame = new Game(player1, player2);    
+        
+        //Get textView huidigeSpelerTV
+        huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
+        
+        //Change huidigeSpelerTV to player1
+        huidigeSpelerTV.setText(currentGame.getTurn().getName());
     }
 
     @Override
@@ -90,6 +116,8 @@ public class MainActivity extends Activity {
 
                 } else {
                     Toast.makeText(this, getString(R.string.weSpelenDoorToast), Toast.LENGTH_SHORT).show();
+                    currentGame.changeTurn();
+                    huidigeSpelerTV.setText(currentGame.getTurn().getName());
                 }
                 break;
 
