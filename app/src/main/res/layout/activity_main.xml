@@ -1,45 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="1"
+    android:background="#ff0051ff">
 
-    <TextView android:text="Huidige Speler"
-        style="@style/GroteText.Rood"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/huidigeSpeler"/>
-    
-    <TextView android:text=" is aan zet"
-        style="@style/GroteText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:id="@+id/isAanZetText"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/huidigeSpeler"
-        />
-
-    <TextView
-        style="@style/HetWoord"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="GHOST"
-        android:id="@+id/huidigWoord"
-        android:layout_below="@+id/huidigeSpeler"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        android:layout_height="wrap_content">
+            <TextView android:text="Huidige Speler"
+                style="@style/GroteText.Rood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/huidigeSpeler"/>
+            
+            <TextView android:text=" is aan zet"
+                style="@style/GroteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:id="@+id/isAanZetText"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/huidigeSpeler"
+                android:textColor="#FFFFFF" />
+        
+            <TextView
+                style="@style/HetWoord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="GHOST"
+                android:id="@+id/huidigWoord"
+                android:layout_below="@+id/huidigeSpeler"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="#fffefffd"
+                android:textColorHighlight="#ffff0011" />
+    </RelativeLayout>
 
     <GridLayout
-        android:layout_width="match_parent"
+        android:id="@+id/ToetsenBord"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_weight="10"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="5dp">
 
         
 
@@ -163,22 +177,18 @@
                 android:layout_row="5"
                 android:layout_column="3"
                 android:onClick="letterClicked" />
-
             <Button android:text="Y"
                 android:id="@+id/Ybtn"
                 android:layout_row="6"
                 android:layout_column="1"
-                android:onClick="letterClicked"
-                />
-
+                android:onClick="letterClicked" />
             <Button android:text="Z"
                 android:id="@+id/Zbtn"
                 android:layout_row="6"
                 android:layout_column="2"
                 android:onClick="letterClicked" />
 
-
     </GridLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

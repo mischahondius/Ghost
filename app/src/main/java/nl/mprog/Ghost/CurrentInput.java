@@ -2,6 +2,7 @@ package nl.mprog.Ghost;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,11 +12,11 @@ import android.widget.TextView;
 public class CurrentInput{
 
     //Current input
-    private String theCurrentInput;
+    public String theCurrentInput;
 
     //Size of the current input
-    private int inputSize;
-    
+    public int inputSize;
+
     public CurrentInput() {
         theCurrentInput = "";
         inputSize = 0;
@@ -42,14 +43,15 @@ public class CurrentInput{
     public void clear(TextView view) {
         this.theCurrentInput = "";
         this.inputSize = 0;
-        
+
         //set view
         view.setText(this.theCurrentInput);
+
+        Log.d("door Clearfunctie heengelopen, currentinput =", this.theCurrentInput);
     }
 
     //Function getSize
     public int getSize () {
         return this.inputSize;
     }
-    
 }

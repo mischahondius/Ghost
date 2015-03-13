@@ -55,6 +55,13 @@ public class Dictionary{
     //get Words method
     public HashSet<String> getWords(){return words;}
 
+
+
+    //get size method
+    public int getSize(){
+       return  this.words.size();
+    }
+
 }
     
         

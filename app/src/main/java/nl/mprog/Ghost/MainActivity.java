@@ -2,6 +2,7 @@ package nl.mprog.Ghost;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,7 +42,7 @@ public class MainActivity extends Activity {
     public Player player2;
 
     //initialize remainingwords
-    HashSet<String> remainingWords;
+    public HashSet<String> remainingWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,16 @@ public class MainActivity extends Activity {
 
         //TV update who has the turn
         huidigeSpelerTV.setText(currentGame.getTurn().getName());
+
+        //load in new dictionary
+        dutchDictionary = new Dictionary(this);
+
+        //Refill remaining words
+        remainingWords = dutchDictionary.getWords();
+
+        Log.d("refilled remaining words","" );
+        Log.d("current dutch dictionary size:", Integer.toString(dutchDictionary.getSize()));
+
     }
 
     //on letter clicked
@@ -117,44 +128,79 @@ public class MainActivity extends Activity {
         //Add letter + pass textview to update
         theCurrentWord.addLetter(letterChar, huidigWoordTV);
 
+        //iterate through set, throw away unnecessary words
+        Iterator<String> itr = remainingWords.iterator();
+        while (itr.hasNext()) {
 
-        //if remaining words are not empty, nor one word, go and throw away all words that are not necessary
-        if (!remainingWords.isEmpty() || (remainingWords.size() != 1)) {
+            //Load next word into iterator element
+            String tmpWoord = itr.next();
 
-            //check letter
-            //iterate door de gehele set
-            Iterator<String> itr = remainingWords.iterator();
-            while (itr.hasNext()) {
+            Log.d("Huidige waarde size huidig woord", Integer.toString(theCurrentWord.getSize()));
+            Log.d("huidige waarde letterchar", Character.toString(letterChar));
 
-                //Load next word into iterator element
-                String tmpWoord = itr.next();
 
-                //Remove all unnecessary words
-                if (tmpWoord.charAt(theCurrentWord.getSize() - 1) != letterChar) {
 
-                    //remove element
-                    itr.remove();
+            //Remove all unnecessary words
+            if (tmpWoord.charAt(theCurrentWord.getSize()-1) != letterChar){
+
+                Log.d("trying to remove", tmpWoord);
+
+                //remove element
+                itr.remove();
+                Log.d("removed", tmpWoord);
+            }
+        }
+
+        //check whether remaining wordslist is is now empty or 1
+        //If list is Empty or 1, false letter or correct word -> Win for opponent
+        if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
+
+            Log.d("WIN because remaining word is empty:", Boolean.toString(remainingWords.isEmpty()));
+            Log.d("WIN because remaining wordsize = 1:", Integer.toString(remainingWords.size()));
+
+
+            //Opponent won, appoint a point to opponent
+            currentGame.PtToOpponent();
+
+            //Toast winner and how many points winner has in total
+            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
+
+            //Restart game
+            restart();
+        }
+
+        //else, we continue to play
+        else {
+
+            //4 letters or more 
+            if (theCurrentWord.getSize() > 3) {
+
+                //in dictionary as single word??
+                if (dutchDictionary.isWord(theCurrentWord.get())) {
+
+                    Log.d("WIN because this word is in the dictionary:", theCurrentWord.get());
+
+                    //if in dictionary, FAIL! Win for opponent
+                    //Opponent won, appoint a point to opponent
+                    currentGame.PtToOpponent();
+
+                    //Toast winner and how many points winner has in total
+                    Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
+
+                    //Restart game
+                    restart();
+                }
+                //else, 4 letters or more and more words left -> play through
+                else {
+                    //testToast
+                    Toast.makeText(this, "Amount of remaining words: " + remainingWords.size(), Toast.LENGTH_LONG).show();
+
+                    //Change turn, change turn TV
+                    currentGame.changeTurn();
                 }
             }
 
-
-            //check whether remainingwords is now empty or 1
-            //If list is Empty or 1, false letter or correct word -> Win for opponent
-            if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
-                //Opponent won, appoint a point to opponent
-                currentGame.PtToOpponent();
-
-                //Toast winner and how many points winner has in total
-                Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
-
-                //Restart game
-                restart();
-
-                //Refill remaining words, TODO remaining words refill automatisch bij restart
-                remainingWords = dutchDictionary.getWords();
-            }
-
-            //else, we continue to play
+            //Else (If not 4 letters minimum -> play through)
             else {
 
                 //testToast
@@ -166,29 +212,3 @@ public class MainActivity extends Activity {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-//        //if wordsize is smaller than 3 -> play through
-//        if (theCurrentWord.getSize() < 3) {
-
-
-//
-//        //IF size van de hashset is 1 -> Winnaar!
-//        //
-//
-//        //ELSE IF -> set is empty -> VERLIEZER
-//
-//
-//
-
-//    }
-//}
