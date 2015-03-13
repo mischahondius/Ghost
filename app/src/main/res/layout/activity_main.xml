@@ -9,7 +9,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:weightSum="1"
-    android:background="#ff0051ff">
+    android:background="#1a00beff">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
                 android:id="@+id/isAanZetText"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/huidigeSpeler"
-                android:textColor="#FFFFFF" />
+                android:textColor="#ff000000" />
         
             <TextView
                 style="@style/HetWoord"
@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
-                android:textColor="#fffefffd"
+                android:textColor="#ff000000"
                 android:textColorHighlight="#ffff0011" />
     </RelativeLayout>
 

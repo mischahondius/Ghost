@@ -113,9 +113,6 @@ public class MainActivity extends Activity {
         //Refill remaining words
         remainingWords = dutchDictionary.getWords();
 
-        Log.d("refilled remaining words","" );
-        Log.d("current dutch dictionary size:", Integer.toString(dutchDictionary.getSize()));
-
     }
 
     //on letter clicked
@@ -132,38 +129,34 @@ public class MainActivity extends Activity {
         Iterator<String> itr = remainingWords.iterator();
         while (itr.hasNext()) {
 
+   
             //Load next word into iterator element
             String tmpWoord = itr.next();
 
-            Log.d("Huidige waarde size huidig woord", Integer.toString(theCurrentWord.getSize()));
-            Log.d("huidige waarde letterchar", Character.toString(letterChar));
-
-
-
+            //check of woord niet te klein is
+            if ((tmpWoord.length()) <= (theCurrentWord.getSize())-1) {
+                
+                //skip to next
+                continue;
+            }
+        
             //Remove all unnecessary words
-            if (tmpWoord.charAt(theCurrentWord.getSize()-1) != letterChar){
-
-                Log.d("trying to remove", tmpWoord);
+            if (tmpWoord.charAt(theCurrentWord.getSize() - 1) != letterChar) {
 
                 //remove element
                 itr.remove();
-                Log.d("removed", tmpWoord);
             }
         }
 
         //check whether remaining wordslist is is now empty or 1
         //If list is Empty or 1, false letter or correct word -> Win for opponent
         if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
-
-            Log.d("WIN because remaining word is empty:", Boolean.toString(remainingWords.isEmpty()));
-            Log.d("WIN because remaining wordsize = 1:", Integer.toString(remainingWords.size()));
-
-
+            
             //Opponent won, appoint a point to opponent
             currentGame.PtToOpponent();
 
             //Toast winner and how many points winner has in total
-            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
 
             //Restart game
             restart();
@@ -178,23 +171,18 @@ public class MainActivity extends Activity {
                 //in dictionary as single word??
                 if (dutchDictionary.isWord(theCurrentWord.get())) {
 
-                    Log.d("WIN because this word is in the dictionary:", theCurrentWord.get());
-
                     //if in dictionary, FAIL! Win for opponent
                     //Opponent won, appoint a point to opponent
                     currentGame.PtToOpponent();
 
                     //Toast winner and how many points winner has in total
-                    Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
 
                     //Restart game
                     restart();
                 }
                 //else, 4 letters or more and more words left -> play through
                 else {
-                    //testToast
-                    Toast.makeText(this, "Amount of remaining words: " + remainingWords.size(), Toast.LENGTH_LONG).show();
-
                     //Change turn, change turn TV
                     currentGame.changeTurn();
                 }
@@ -202,10 +190,6 @@ public class MainActivity extends Activity {
 
             //Else (If not 4 letters minimum -> play through)
             else {
-
-                //testToast
-                Toast.makeText(this, "Amount of remaining words: " + remainingWords.size(), Toast.LENGTH_LONG).show();
-
                 //Change turn, change turn TV
                 currentGame.changeTurn();
             }
