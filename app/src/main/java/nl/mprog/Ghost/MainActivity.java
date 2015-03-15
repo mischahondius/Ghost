@@ -136,40 +136,43 @@ public class MainActivity extends Activity {
             //check of woord niet te klein is
             if ((tmpWoord.length()) <= (theCurrentWord.getSize())-1) {
                 
-                //skip to next
-                continue;
+                //remove smaller word
+                itr.remove();
             }
         
             //Remove all unnecessary words
-            if (tmpWoord.charAt(theCurrentWord.getSize() - 1) != letterChar) {
+            else if (tmpWoord.charAt(theCurrentWord.getSize() - 1) != letterChar) {
 
                 //remove element
                 itr.remove();
             }
+            
         }
 
         //check whether remaining wordslist is is now empty or 1
         //If list is Empty or 1, false letter or correct word -> Win for opponent
-        if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
-            
-            //Opponent won, appoint a point to opponent
-            currentGame.PtToOpponent();
+//      if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
+        if (remainingWords.isEmpty()) {
+        
+        //Opponent won, appoint a point to opponent
+        currentGame.PtToOpponent();
 
-            //Toast winner and how many points winner has in total
-            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
+        //Toast winner and how many points winner has in total
+        Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
 
-            //Restart game
-            restart();
+        //Restart game
+        restart();
         }
 
         //else, we continue to play
+        //not empty, so 1 or more words
         else {
 
-            //4 letters or more 
+            //4 letters or more
             if (theCurrentWord.getSize() > 3) {
 
                 //in dictionary as single word??
-                if (dutchDictionary.isWord(theCurrentWord.get())) {
+                if (remainingWords.contains(theCurrentWord.get())) {
 
                     //if in dictionary, FAIL! Win for opponent
                     //Opponent won, appoint a point to opponent
@@ -188,8 +191,9 @@ public class MainActivity extends Activity {
                 }
             }
 
-            //Else (If not 4 letters minimum -> play through)
+            //Else if smaller than 4, play through
             else {
+
                 //Change turn, change turn TV
                 currentGame.changeTurn();
             }
