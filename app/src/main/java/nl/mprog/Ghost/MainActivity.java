@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,15 +56,21 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //TODO setcontentview -> playeractivity
+        
         setContentView(R.layout.activity_main);
 
         //access sharedprefs
         preferenceSettings = getSharedPreferences(PREFS, MODE_PRIVATE);
 
-        //put standard language in sharedprefs
-        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
-        preferenceEditor.putString("PREF_LANGUAGE", "NL");
-        preferenceEditor.commit();
+        // If there are no shared prefs saved
+        if(preferenceSettings == null){
+            //put standard language in sharedprefs
+            SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+            preferenceEditor.putString("PREF_LANGUAGE", "NL");
+            preferenceEditor.commit();        
+        }
                 
         //Load dictionary
         currentDictionary = new Dictionary(this, preferenceSettings.getString("PREF_LANGUAGE", "NL"));
@@ -220,16 +227,26 @@ public class MainActivity extends Activity {
         //If list is Empty or 1, false letter or correct word -> Win for opponent
 //      if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
         if (remainingWords.isEmpty()) {
-        
-        //Opponent won, appoint a point to opponent
-        currentGame.PtToOpponent();
 
-        //Toast winner and how many points winner has in total
-        Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
+            //Opponent won, appoint a point to opponent
+            currentGame.PtToOpponent();
 
-        //Restart game
-        restart();
+            //Toast winner and how many points winner has in total
+            Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
+
+            //Countdown and restart in order to keep hold of the current word
+            new android.os.CountDownTimer(1500, 1500) {
+
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
+                    restart();
+                }
+            }.start();            
         }
+        
+
 
         //else, we continue to play
         //not empty, so 1 or more words
@@ -248,8 +265,16 @@ public class MainActivity extends Activity {
                     //Toast winner and how many points winner has in total
                     Toast.makeText(this, currentGame.getTurn().getName() + " won and has now " + Integer.toString(currentGame.getTurn().getPoints()) + " points.", Toast.LENGTH_LONG).show();
 
-                    //Restart game
-                    restart();
+                    //Countdown and restart in order to keep hold of the current word
+                    new android.os.CountDownTimer(1500, 1500) {
+
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        public void onFinish() {
+                            restart();
+                        }
+                    }.start();
                 }
                 //else, 4 letters or more and more words left -> play through
                 else {
