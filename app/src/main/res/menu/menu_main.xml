@@ -30,5 +30,4 @@ xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
         android:orderInCategory="104"
         />
 
-
 </menu>

@@ -6,16 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-/**
- * Created by Equifilm on 10-3-2015.
- */
 public class CurrentInput{
 
-    //Current input
-    public String theCurrentInput;
-
-    //Size of the current input
-    public int inputSize;
+    //CurrentInput contains:
+    private String theCurrentInput;
+    private int inputSize;
 
     public CurrentInput() {
         theCurrentInput = "";

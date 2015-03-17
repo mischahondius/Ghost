@@ -12,5 +12,6 @@
     <string name="playersTxt">Players</string>
     <string name="languageTxt">Language</string>
     <string name="highscoresTxt">Highscores</string>
+    <string name="beginTekst">GHOST</string>
 
 </resources>

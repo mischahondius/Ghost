@@ -2,35 +2,21 @@ package nl.mprog.Ghost;
 
 import android.widget.TextView;
 
-/**
- * Created by Equifilm on 12-3-2015.
- */
 public class Game {
 
-//    GAME
-//    *currentPlayer1
-//    *currentPlayer2
-//    *switch?? player1/player2
-//
-//    -currentUsers?
-//            -WhosTurn?
-//            -Win?
-//            -newRound
-
-
 //Game contains:
-public Player player1;
-public Player player2;    
-public Player turn;
-public TextView tvToUpdate;
-    
+private Player player1;
+private Player player2;
+private Player turn;
+private TextView tvToUpdate;
+
     //game constructor
     public Game (Player player1, Player player2, TextView tvIn){
     
         this.player1 = player1;
         this.player2 = player2;
-        tvToUpdate = tvIn;
-        
+        this.tvToUpdate = tvIn;
+
         //Random pick who's to start game
         switch ( (int)(2*Math.random()) ) {
             case 0:
@@ -80,6 +66,11 @@ public TextView tvToUpdate;
         //update TV
         tvToUpdate.setText(this.turn.getName());
     }
+    
+//    public void changeLanguage(String preferredLanguage){
+//        this.language = preferredLanguage;
+//
+//    }
     
 }
 

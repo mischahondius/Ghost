@@ -14,8 +14,8 @@ public class Player {
 //    -add points
     
     //Player contains
-    public String name;
-    public int points;
+    private String name;
+    private int points;
 
     //Player constructor
     public Player(String newName){

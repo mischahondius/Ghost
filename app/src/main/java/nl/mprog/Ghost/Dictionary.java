@@ -10,15 +10,24 @@ import java.util.HashSet;
 public class Dictionary{
     
     //Dictionary contains:
-    public HashSet<String> words;
+    private HashSet<String> words;
     
-    //Dictionary constructor
-    public Dictionary(Context ctx){
+    //Dictionary constructor -> TODO meekrijgen van de aan te maken taal
+    public Dictionary(Context ctx, String GivenLanguage){
               
         //temp hashset
         HashSet<String> tempHashSet = new HashSet<String>();
-
+        
+        //Standard language = Dutch
         InputStream inputStream = ctx.getResources().openRawResource(R.raw.dutch);
+//        this.language = "NL";
+
+        //if Eng meegekregen ->
+        if (GivenLanguage.equals("ENG")) {
+            inputStream = ctx.getResources().openRawResource(R.raw.english);
+//            this.language = "ENG";
+        }
+
         InputStreamReader inputreader = new InputStreamReader(inputStream);
         BufferedReader buffreader = new BufferedReader(inputreader);
         String line;
@@ -63,13 +72,3 @@ public class Dictionary{
     }
 
 }
-    
-        
-
-
-//    //isValid letter check function
-//    public boolean isValid (char lettertoAdd){
-//
-//        //
-//        return true;
-//    }

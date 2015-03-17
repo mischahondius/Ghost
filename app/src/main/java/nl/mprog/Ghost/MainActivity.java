@@ -1,6 +1,9 @@
 package nl.mprog.Ghost;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,12 +13,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class MainActivity extends Activity {
+
+    //initialize shared prefs
+    //Standard Language is Dutch
+    private static final String PREFS = "prefs";
+    private String PREF_LANGUAGE = "NL";
+    private SharedPreferences preferenceSettings;
 
     //initialize theCurrentWord
     public CurrentInput theCurrentWord;
@@ -24,7 +31,7 @@ public class MainActivity extends Activity {
     public char letterChar;
 
     //initialize dictionary
-    public Dictionary dutchDictionary;
+    public Dictionary currentDictionary;
 
     //initialize textview huidigwoord to change
     public TextView huidigWoordTV;
@@ -44,19 +51,28 @@ public class MainActivity extends Activity {
     //initialize remainingwords
     public HashSet<String> remainingWords;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //access sharedprefs
+        preferenceSettings = getSharedPreferences(PREFS, MODE_PRIVATE);
+
+        //put standard language in sharedprefs
+        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+        preferenceEditor.putString("PREF_LANGUAGE", "NL");
+        preferenceEditor.commit();
+                
         //Load dictionary
-        dutchDictionary = new Dictionary(this);
+        currentDictionary = new Dictionary(this, preferenceSettings.getString("PREF_LANGUAGE", "NL"));
 
         //Load theCurrentWord
         theCurrentWord = new CurrentInput();
 
         //Load remainingwords
-        remainingWords = dutchDictionary.getWords();
+        remainingWords = currentDictionary.getWords();
 
         //Load textview huidigwoord
         huidigWoordTV = (TextView) findViewById(R.id.huidigWoord);
@@ -69,7 +85,7 @@ public class MainActivity extends Activity {
 
         //Get textView huidigeSpelerTV
         huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
-
+        
         //Create new game
         currentGame = new Game(player1, player2, huidigeSpelerTV);
     }
@@ -88,12 +104,60 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Restart option clicked
         if (id == R.id.restart) {
             restart();
         }
+        
+        //Language change option clicked
+        if (id == R.id.language) {
+            
+            //ENGLISH or DUTCH view options select
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Language");
+            alert.setMessage("Please choose:");
 
-        return super.onOptionsItemSelected(item);
+            // Option Dutch 
+            alert.setPositiveButton("Nederlands", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    
+                    // Put it into shared prefs
+                    SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+                    preferenceEditor.putString("PREF_LANGUAGE", "NL");
+                    preferenceEditor.commit();
+
+                    //restart game with new language
+                    restart();
+                    
+                    // Confirm language
+                    Toast.makeText(getApplicationContext(), "The current language is now Dutch!", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            // Option English
+            alert.setNegativeButton("English", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    
+                    // Put it into shared prefs                    
+                    SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+                    preferenceEditor.putString("PREF_LANGUAGE", "ENG");
+                    preferenceEditor.commit();
+
+                    //restart game with new language
+                    restart();
+                    
+                    // Confirm language
+                    Toast.makeText(getApplicationContext(), "The current language is now English!", Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+            alert.show();
+        }
+            
+            return super.onOptionsItemSelected(item);
     }
 
     //Restart method
@@ -108,10 +172,13 @@ public class MainActivity extends Activity {
         huidigeSpelerTV.setText(currentGame.getTurn().getName());
 
         //load in new dictionary
-        dutchDictionary = new Dictionary(this);
+        currentDictionary = new Dictionary(this, preferenceSettings.getString("PREF_LANGUAGE", "NL"));
+        
+        //check if language is changed
+        Log.i("Language is", preferenceSettings.getString("PREF_LANGUAGE", "NL"));
 
         //Refill remaining words
-        remainingWords = dutchDictionary.getWords();
+        remainingWords = currentDictionary.getWords();
 
     }
 
