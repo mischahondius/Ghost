@@ -111,6 +111,14 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //Players option Clicked
+        if (id == R.id.players){
+        //load new screen
+            setContentView(R.layout.activity_change_players);
+            //TODO intent? we moeten wat terugkrijgen denk ik? Of andere activity maken?
+
+        }
+        
         //Restart option clicked
         if (id == R.id.restart) {
             restart();
