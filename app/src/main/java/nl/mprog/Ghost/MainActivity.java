@@ -23,8 +23,10 @@ public class MainActivity extends Activity {
     //initialize shared prefs
     //Standard Language is Dutch
     public static final String PREFS = "prefs";
+    public static final String CURRENT_PLAYERS = "current_players";
     public String PREF_LANGUAGE = "NL";
     public SharedPreferences preferenceSettings;
+    public SharedPreferences CurrentPlayerPreferenceSettings;
 
     //initialize theCurrentWord
     public CurrentInput theCurrentWord;
@@ -66,7 +68,7 @@ public class MainActivity extends Activity {
         preferenceSettings = getSharedPreferences(PREFS, MODE_PRIVATE);
 
         // If there are no shared prefs saved
-        if(preferenceSettings == null){
+        if(!preferenceSettings.contains("PREF_LANGUAGE")){
             //put standard language in sharedprefs
             SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
             preferenceEditor.putString("PREF_LANGUAGE", "NL");
@@ -85,17 +87,54 @@ public class MainActivity extends Activity {
         //Load textview huidigwoord
         huidigWoordTV = (TextView) findViewById(R.id.huidigWoord);
 
+        //IF players in sharedprefs_> load in those players
+        //access sharedprefs
+        CurrentPlayerPreferenceSettings = getSharedPreferences(CURRENT_PLAYERS, MODE_PRIVATE);
+
         //TEMP hardcode create player1
         player1 = new Player("Hardcoded Naam1");
 
         //TEMP hardcode create player2
         player2 = new Player("Hardcoded Naam2");
+        
+        // If there are shared prefs saved with last players
+        if(CurrentPlayerPreferenceSettings.contains("Player 1_Name")){
+
+            //Get unique names of last players
+            String oldNamePlayer1 = CurrentPlayerPreferenceSettings.getString("Player 1_Name", "default");
+            String oldNamePlayer2 = CurrentPlayerPreferenceSettings.getString("Player 2_Name", "default");
+
+            //Get points of last players 
+            int oldPointsPlayer1 = CurrentPlayerPreferenceSettings.getInt("Player 1_Points", 0);
+            int oldPointsPlayer2 = CurrentPlayerPreferenceSettings.getInt("Player 2_Points", 0);
+
+
+            //reload players
+            player1.reLoad(oldNamePlayer1, oldPointsPlayer1);
+            player2.reLoad(oldNamePlayer2, oldPointsPlayer2);
+                        
+    
+        }
+        
+        //ELSE put hardcoded players there, in order to create players in prefs
+        else{
+            
+            //put hardcoded names and points in sharedprefs
+            SharedPreferences.Editor preferenceEditor = CurrentPlayerPreferenceSettings.edit();
+            preferenceEditor.putString("Player 1_Name", player1.getName());
+            preferenceEditor.putInt("Player 1_Points", player1.getPoints());
+            preferenceEditor.putString("Player 2_Name", player2.getName());
+            preferenceEditor.putInt("Player 2_Points", player2.getPoints());
+
+            preferenceEditor.commit();
+        }
+
 
         //Get textView huidigeSpelerTV
         huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
         
         //Create new game
-        currentGame = new Game(player1, player2, huidigeSpelerTV, getApplicationContext());
+        currentGame = new Game(player1, player2, huidigeSpelerTV);
     }
 
     @Override
@@ -177,6 +216,24 @@ public class MainActivity extends Activity {
             
             return super.onOptionsItemSelected(item);
     }
+    
+    //on close etc
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //Put players names and points in sharedprefs
+        //put hardcoded names and points in sharedprefs
+        SharedPreferences.Editor preferenceEditor = CurrentPlayerPreferenceSettings.edit();
+        preferenceEditor.putString("Player 1_Name", currentGame.player1.getName());
+        preferenceEditor.putInt("Player 1_Points", currentGame.player1.getPoints());
+        preferenceEditor.putString("Player 2_Name", currentGame.player2.getName());
+        preferenceEditor.putInt("Player 2_Points", currentGame.player2.getPoints());
+
+        preferenceEditor.commit();
+        
+    }
 
     //Restart method
     public void restart() {
@@ -184,7 +241,7 @@ public class MainActivity extends Activity {
         theCurrentWord.clear(huidigWoordTV);
 
         //Create new game
-        currentGame = new Game(player1, player2, huidigeSpelerTV, getApplicationContext());
+        currentGame = new Game(player1, player2, huidigeSpelerTV);
 
         //TV update who has the turn
         huidigeSpelerTV.setText(currentGame.getTurn().getName());

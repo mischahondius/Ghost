@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 public class Game {
 
-    //initialize shared prefs
-    public static final String CURRENT_PLAYERS = "current_players";
-    public SharedPreferences preferenceSettings;
+//    //initialize shared prefs
+//    public static final String CURRENT_PLAYERS = "current_players";
+//    public SharedPreferences preferenceSettings;
     
 
 
@@ -23,10 +23,10 @@ private Player turn;
 private TextView tvToUpdate;
 
     //game constructor
-    public Game (Player player1, Player player2, TextView tvIn, Context ctx){
+    public Game (Player player1, Player player2, TextView tvIn){
         
-        //access sharedprefs
-        preferenceSettings = ctx.getSharedPreferences(CURRENT_PLAYERS, ctx.MODE_PRIVATE);
+//        //access sharedprefs
+//        preferenceSettings = ctx.getSharedPreferences(CURRENT_PLAYERS, ctx.MODE_PRIVATE);
 
         this.player1 = player1;
         this.player2 = player2;
@@ -44,18 +44,6 @@ private TextView tvToUpdate;
         
         //update view
         updateTVTurn();
-
-        //Put Unique Player ID's into shared prefs
-        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
-        preferenceEditor.putString("Player 1", this.player1.getID().toString());
-        preferenceEditor.putString("Player 2", this.player2.getID().toString());
-        preferenceEditor.commit();
-
-        Log.i("ID in sharedprefs player1:", preferenceSettings.getString("Player 1", "default"));
-        Log.i("ID in sharedrpesfs player2:", preferenceSettings.getString("Player 2", "default"));
-
-
-
     }
 
     //method, who's turn?
@@ -101,14 +89,14 @@ private TextView tvToUpdate;
     //Update View
     updateTVTurn();
 
-        //Put Unique Player ID's into shared prefs
-        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
-        preferenceEditor.putString("Player 1", this.player1.getID().toString());
-        preferenceEditor.putString("Player 2", this.player2.getID().toString());
-        preferenceEditor.commit();
+//        //Put Unique Player ID's into shared prefs
+//        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+//        preferenceEditor.putString("Player 1", this.player1.getID().toString());
+//        preferenceEditor.putString("Player 2", this.player2.getID().toString());
+//        preferenceEditor.commit();
 
-        Log.i("ID in sharedprefs player1:", preferenceSettings.getString("Player 1", "default"));
-        Log.i("ID in sharedrpesfs player2:", preferenceSettings.getString("Player 2", "default"));
+//        Log.i("ID in sharedprefs player1:", preferenceSettings.getString("Player 1", "default"));
+//        Log.i("ID in sharedrpesfs player2:", preferenceSettings.getString("Player 2", "default"));
     }
 }
 

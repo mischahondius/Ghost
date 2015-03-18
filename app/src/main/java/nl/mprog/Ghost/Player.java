@@ -14,13 +14,18 @@ public class Player {
     //Player contains
     private String name;
     private int points;
-    private UUID id;
+//    private UUID id;
 
     //Player constructor
     public Player(String newName){
         this.name = newName;
         this.points = 0;
-        this.id = generateID();
+//        this.id = generateID();
+    }
+    
+    public void reLoad (String oldName, int oldPoints){
+        this.name = oldName;
+        this.points = oldPoints;
     }
     
     //getName method
@@ -45,14 +50,14 @@ public class Player {
         return this.points;
     }
 
-    //Create unique ID method
-    private static final UUID generateID(){
-        UUID newID = UUID.randomUUID();
-        return newID;
-    }
+//    //Create unique ID method
+//    private static final UUID generateID(){
+//        UUID newID = UUID.randomUUID();
+//        return newID;
+//    }
     
-    //get ID function
-    public UUID getID(){
-        return this.id;
-    }
+//    //get ID function
+//    public UUID getID(){
+//        return this.id;
+//    }
 }
