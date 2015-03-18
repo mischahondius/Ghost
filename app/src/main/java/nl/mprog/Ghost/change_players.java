@@ -37,8 +37,6 @@ public class change_players extends Activity {
     
     public void onSubmit(View submitbutton){
 
-        
-
         //Finish activity and return result
         finish();
         

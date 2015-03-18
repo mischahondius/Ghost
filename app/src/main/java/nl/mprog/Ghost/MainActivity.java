@@ -92,10 +92,10 @@ public class MainActivity extends Activity {
         CurrentPlayerPreferenceSettings = getSharedPreferences(CURRENT_PLAYERS, MODE_PRIVATE);
 
         //TEMP hardcode create player1
-        player1 = new Player("Hardcoded Naam1");
+        player1 = new Player("Hardcoded Naam1", getApplicationContext());
 
         //TEMP hardcode create player2
-        player2 = new Player("Hardcoded Naam2");
+        player2 = new Player("Hardcoded Naam2", getApplicationContext());
         
         // If there are shared prefs saved with last players
         if(CurrentPlayerPreferenceSettings.contains("Player 1_Name")){
@@ -151,6 +151,12 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //If Highscores selected
+        if (id == R.id.highscores){
+            Intent i = new Intent(this, HighScores.class);
+            startActivity(i);
+        }
+        
         //Players option Clicked
         if (id == R.id.players){
 

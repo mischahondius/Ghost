@@ -1,26 +1,29 @@
 package nl.mprog.Ghost;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.UUID;
 
 public class Player {
-    
-    
-    //Player
-//    -name
-//    -points
-//    -add points
-    
+    public static final String ALL_PLAYERS = "all_players";
+    public SharedPreferences allPlayers;
+       
     //Player contains
     private String name;
     private int points;
-//    private UUID id;
 
     //Player constructor
-    public Player(String newName){
+    public Player(String newName, Context ctx){
         this.name = newName;
         this.points = 0;
-//        this.id = generateID();
+
+        //access sharedprefs
+        allPlayers = ctx.getSharedPreferences(ALL_PLAYERS, ctx.MODE_PRIVATE);
+        
+        //save to highscores
+        saveToHighscores();
+ 
     }
     
     public void reLoad (String oldName, int oldPoints){
@@ -36,13 +39,14 @@ public class Player {
     //setName method
     public void setName(String newName){
         this.name = newName;
-    }
-    
+    }   
     
     //give point method
     public void givePoint(){
         this.points++;
         
+        //save to highscores
+        saveToHighscores();
     }
 
     //Get points method
@@ -50,14 +54,10 @@ public class Player {
         return this.points;
     }
 
-//    //Create unique ID method
-//    private static final UUID generateID(){
-//        UUID newID = UUID.randomUUID();
-//        return newID;
-//    }
-    
-//    //get ID function
-//    public UUID getID(){
-//        return this.id;
-//    }
+    public void saveToHighscores() {
+        SharedPreferences.Editor editor = allPlayers.edit();
+        editor.putInt(this.name, this.points);
+        editor.commit();
+    }
+
 }

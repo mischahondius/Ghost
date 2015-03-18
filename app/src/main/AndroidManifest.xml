@@ -20,7 +20,11 @@
         <activity
             android:name=".change_players"
             android:label="@string/title_activity_change_players"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".HighScores"
+            android:label="@string/title_activity_high_scores" >
         </activity>
     </application>
 
