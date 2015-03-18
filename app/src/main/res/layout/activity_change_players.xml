@@ -1,7 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context="nl.mprog.Ghost.change_players">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Change name of Player 1:"
+        android:id="@+id/textChange1TV" />
 
     <EditText
         android:layout_width="match_parent"
@@ -9,7 +19,15 @@
         android:inputType="textPersonName"
         android:text="Name Player 1"
         android:ems="10"
-        android:id="@+id/player1NameTV" />
+        android:id="@+id/player1NameTV"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Change name of Player 2:"
+        android:id="@+id/textChange2TV" />
 
     <EditText
         android:layout_width="match_parent"
@@ -17,12 +35,15 @@
         android:inputType="textPersonName"
         android:text="Name Player 2"
         android:ems="10"
-        android:id="@+id/player2NameTV" />
+        android:id="@+id/player2NameTV"
+        android:layout_marginBottom="30dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/submitTV"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:onClick="onSubmit"
+        android:nestedScrollingEnabled="true" />
 </LinearLayout>

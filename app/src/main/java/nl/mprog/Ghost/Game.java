@@ -1,18 +1,32 @@
 package nl.mprog.Ghost;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.TextView;
+
+
 
 public class Game {
 
+    //initialize shared prefs
+    public static final String CURRENT_PLAYERS = "current_players";
+    public SharedPreferences preferenceSettings;
+    
+
+
+
 //Game contains:
-private Player player1;
-private Player player2;
+public Player player1;
+public Player player2;
 private Player turn;
 private TextView tvToUpdate;
 
     //game constructor
-    public Game (Player player1, Player player2, TextView tvIn){
-    
+    public Game (Player player1, Player player2, TextView tvIn, Context ctx){
+        
+        //access sharedprefs
+        preferenceSettings = ctx.getSharedPreferences(CURRENT_PLAYERS, ctx.MODE_PRIVATE);
+
         this.player1 = player1;
         this.player2 = player2;
         this.tvToUpdate = tvIn;
@@ -29,6 +43,13 @@ private TextView tvToUpdate;
         
         //update view
         updateTVTurn();
+
+        //TODO add update sharedprefs
+        //Put Unique Player ID's into shared prefs
+        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+        preferenceEditor.putString("Player 1", this.player1.getID().toString());
+        preferenceEditor.putString("Player 2", this.player2.getID().toString());
+        preferenceEditor.commit();
 
     }
 
@@ -67,11 +88,21 @@ private TextView tvToUpdate;
         tvToUpdate.setText(this.turn.getName());
     }
     
-//    public void changeLanguage(String preferredLanguage){
-//        this.language = preferredLanguage;
-//
-//    }
+    //ChangePlayers method
+    public void changePlayers(Player player1, Player player2){
+    this.player1 = player1;
+    this.player2 = player2;
     
+    //Update View
+    updateTVTurn();
+
+        //TODO add update sharedprefs
+//        Put it into shared prefs
+//        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+//        preferenceEditor.putInt(INT ID PLAYER1);
+//        preferenceEditor.putInt(INT ID PLAYER2);
+//        preferenceEditor.commit();
+    }
 }
 
 

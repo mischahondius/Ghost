@@ -3,6 +3,7 @@ package nl.mprog.Ghost;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,9 +22,9 @@ public class MainActivity extends Activity {
 
     //initialize shared prefs
     //Standard Language is Dutch
-    private static final String PREFS = "prefs";
-    private String PREF_LANGUAGE = "NL";
-    private SharedPreferences preferenceSettings;
+    public static final String PREFS = "prefs";
+    public String PREF_LANGUAGE = "NL";
+    public SharedPreferences preferenceSettings;
 
     //initialize theCurrentWord
     public CurrentInput theCurrentWord;
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        //TODO setcontentview -> playeractivity
+        //TODO setcontentview -> welcome screen
         
         setContentView(R.layout.activity_main);
 
@@ -94,7 +95,7 @@ public class MainActivity extends Activity {
         huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
         
         //Create new game
-        currentGame = new Game(player1, player2, huidigeSpelerTV);
+        currentGame = new Game(player1, player2, huidigeSpelerTV, getApplicationContext());
     }
 
     @Override
@@ -113,9 +114,11 @@ public class MainActivity extends Activity {
 
         //Players option Clicked
         if (id == R.id.players){
-        //load new screen
-            setContentView(R.layout.activity_change_players);
-            //TODO intent? we moeten wat terugkrijgen denk ik? Of andere activity maken?
+
+            Intent i = new Intent(this, change_players.class);
+            i.putExtra("Player 1", currentGame.player1.getName());
+            i.putExtra("Player 2", currentGame.player2.getName());
+            startActivityForResult(i, 101);
 
         }
         
@@ -181,7 +184,7 @@ public class MainActivity extends Activity {
         theCurrentWord.clear(huidigWoordTV);
 
         //Create new game
-        currentGame = new Game(player1, player2, huidigeSpelerTV);
+        currentGame = new Game(player1, player2, huidigeSpelerTV, getApplicationContext());
 
         //TV update who has the turn
         huidigeSpelerTV.setText(currentGame.getTurn().getName());
@@ -296,6 +299,17 @@ public class MainActivity extends Activity {
 
                 //Change turn, change turn TV
                 currentGame.changeTurn();
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (resultCode == RESULT_OK && requestCode == 101) {
+            if (data.hasExtra("Player 1") && data.hasExtra("Player 2")) {
+                player1.setName(data.getExtras().getString("Player 1"));
+                player2.setName(data.getExtras().getString("Player 2"));
+                currentGame.changePlayers(player1, player2);
             }
         }
     }
