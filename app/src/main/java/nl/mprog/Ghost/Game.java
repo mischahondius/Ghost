@@ -2,6 +2,7 @@ package nl.mprog.Ghost;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.TextView;
 
 
@@ -44,12 +45,16 @@ private TextView tvToUpdate;
         //update view
         updateTVTurn();
 
-        //TODO add update sharedprefs
         //Put Unique Player ID's into shared prefs
         SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
         preferenceEditor.putString("Player 1", this.player1.getID().toString());
         preferenceEditor.putString("Player 2", this.player2.getID().toString());
         preferenceEditor.commit();
+
+        Log.i("ID in sharedprefs player1:", preferenceSettings.getString("Player 1", "default"));
+        Log.i("ID in sharedrpesfs player2:", preferenceSettings.getString("Player 2", "default"));
+
+
 
     }
 
@@ -96,12 +101,14 @@ private TextView tvToUpdate;
     //Update View
     updateTVTurn();
 
-        //TODO add update sharedprefs
-//        Put it into shared prefs
-//        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
-//        preferenceEditor.putInt(INT ID PLAYER1);
-//        preferenceEditor.putInt(INT ID PLAYER2);
-//        preferenceEditor.commit();
+        //Put Unique Player ID's into shared prefs
+        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+        preferenceEditor.putString("Player 1", this.player1.getID().toString());
+        preferenceEditor.putString("Player 2", this.player2.getID().toString());
+        preferenceEditor.commit();
+
+        Log.i("ID in sharedprefs player1:", preferenceSettings.getString("Player 1", "default"));
+        Log.i("ID in sharedrpesfs player2:", preferenceSettings.getString("Player 2", "default"));
     }
 }
 
