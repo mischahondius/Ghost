@@ -20,10 +20,10 @@ public class Player {
 
         //access sharedprefs
         allPlayers = ctx.getSharedPreferences(ALL_PLAYERS, ctx.MODE_PRIVATE);
-        
+
         //save to highscores
         saveToHighscores();
- 
+
     }
     
     public void reLoad (String oldName, int oldPoints){
@@ -59,5 +59,7 @@ public class Player {
         editor.putInt(this.name, this.points);
         editor.commit();
     }
+    
+    
 
 }

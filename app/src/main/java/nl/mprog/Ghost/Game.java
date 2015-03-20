@@ -12,9 +12,6 @@ public class Game {
 //    //initialize shared prefs
 //    public static final String CURRENT_PLAYERS = "current_players";
 //    public SharedPreferences preferenceSettings;
-    
-
-
 
 //Game contains:
 public Player player1;
@@ -85,7 +82,11 @@ private TextView tvToUpdate;
     public void changePlayers(Player player1, Player player2){
     this.player1 = player1;
     this.player2 = player2;
-    
+        
+    //Save new players to sharedprefs, Highscores
+    this.player1.saveToHighscores();
+    this.player2.saveToHighscores();
+
     //Update View
     updateTVTurn();
 
