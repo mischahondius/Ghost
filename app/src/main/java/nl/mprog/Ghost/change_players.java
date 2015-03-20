@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +32,12 @@ public class change_players extends Activity {
     String player1Name;
     String player2Name;
 
+    Spinner spinner1;
+    Spinner spinner2;
+    
+    //spinner first time check
+    int check;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +56,11 @@ public class change_players extends Activity {
         editPlayer1TV.setText(player1Name);
         editPlayer2TV.setText(player2Name);   
         
-        //Get Spinner TV to fill up with selectable names
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerTV1);
-        
+        //Get Spinner TVs to fill up with selectable names
+        spinner1 = (Spinner) findViewById(R.id.spinnerTV1);
+        spinner2 = (Spinner) findViewById(R.id.spinnerTV2);
+
+
         //Set spinner with all possible names
         //get names
         
@@ -66,13 +75,46 @@ public class change_players extends Activity {
         for (Map.Entry<String, ?> entry : highScores.entrySet()) {
             nameList.add(entry.getKey());
         }
-
+        
+        //Create adapter for spinner and set it
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, nameList);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(dataAdapter);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       
+        spinner1.setAdapter(dataAdapter);
+        spinner2.setAdapter(dataAdapter);
+
+        //Set spinner listener1
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                check++;
+                if(check>1) {
+                String selectedNamePlayerOne = (String) parent.getItemAtPosition(pos);
+                editPlayer1TV.setText(selectedNamePlayerOne);}
+            }
                 
-    }
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                editPlayer1TV.setText("You've selected NOTHING");
+            }
+        });
+
+        //Set spinner listener2
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                check++;
+                if(check>1) {
+                    String selectedNamePlayerTwo = (String) parent.getItemAtPosition(pos);
+                    editPlayer2TV.setText(selectedNamePlayerTwo);}
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                editPlayer2TV.setText("You've selected NOTHING");
+            }
+        });
+
+
+
+    }    
     
     public void onSubmit(View submitbutton){
 
@@ -96,6 +138,8 @@ public class change_players extends Activity {
         //get TV player 1 & 2 inputted names
         String newNamePlayer1 = editPlayer1TV.getText().toString();
         String newNamePlayer2 = editPlayer2TV.getText().toString();
+        
+        //GET spinner input
         
                
         Intent data = new Intent();

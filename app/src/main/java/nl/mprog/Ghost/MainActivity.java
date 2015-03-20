@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         //TODO setcontentview -> welcome screen
-        
         setContentView(R.layout.activity_main);
 
         //access sharedprefs
@@ -92,10 +91,10 @@ public class MainActivity extends Activity {
         CurrentPlayerPreferenceSettings = getSharedPreferences(CURRENT_PLAYERS, MODE_PRIVATE);
 
         //TEMP hardcode create player1
-        player1 = new Player("Hardcoded Naam1", getApplicationContext());
+        player1 = new Player("Speler 1", getApplicationContext());
 
         //TEMP hardcode create player2
-        player2 = new Player("Hardcoded Naam2", getApplicationContext());
+        player2 = new Player("Speler 2", getApplicationContext());
         
         // If there are shared prefs saved with last players
         if(CurrentPlayerPreferenceSettings.contains("Player 1_Name")){

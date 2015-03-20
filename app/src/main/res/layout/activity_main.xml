@@ -40,8 +40,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
-                android:textColor="#ff000000"
-                android:textColorHighlight="#ffff0011" />
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#ffff0011"
+                android:background="#ffaf0004"
+                android:maxLines="1"
+                android:typeface="sans"
+                android:padding="5dp" />
     </RelativeLayout>
 
     <GridLayout
