@@ -142,10 +142,10 @@ public class change_players extends Activity {
         //get TV player 1 & 2 inputted names
         String newNamePlayer1 = editPlayer1TV.getText().toString();
         String newNamePlayer2 = editPlayer2TV.getText().toString();
-        
+
         //GET spinner input
-        
-               
+
+
         Intent data = new Intent();
         data.putExtra("Player 1", newNamePlayer1);
         data.putExtra("Player 2", newNamePlayer2);

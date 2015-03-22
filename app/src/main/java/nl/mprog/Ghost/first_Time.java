@@ -4,12 +4,9 @@
 package nl.mprog.Ghost;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 public class first_Time extends Activity {
 
@@ -142,14 +139,28 @@ public class first_Time extends Activity {
         String newNamePlayer1 = editPlayer1TV.getText().toString();
         String newNamePlayer2 = editPlayer2TV.getText().toString();
         
-        //if empty
-        //if same name
-
-        Intent data = new Intent();
-        data.putExtra("Player 1", newNamePlayer1);
-        data.putExtra("Player 2", newNamePlayer2);
-        setResult(RESULT_OK, data);
-        super.finish();
+        //Check if valid name
+        if (!Name.isValid((newNamePlayer1)) || !Name.isValid((newNamePlayer2))) {
+            if (!Name.isValid(newNamePlayer1)){
+            editPlayer1TV.setError("Invalid Name");}
+            if (!Name.isValid(newNamePlayer2)){
+                editPlayer2TV.setError("Invalid Name");}
+            return;
+        }
+        
+        //if same name, toast error message
+        if (newNamePlayer1.equals(newNamePlayer2)){
+            Toast.makeText(getApplicationContext(), "You can't use the same name", Toast.LENGTH_LONG).show();
+            return;
+        }
+        
+        else {
+            Intent data = new Intent();
+            data.putExtra("Player 1", newNamePlayer1);
+            data.putExtra("Player 2", newNamePlayer2);
+            setResult(RESULT_OK, data);
+            super.finish();
+        }
     }
 
 
@@ -175,4 +186,6 @@ public class first_Time extends Activity {
         allPlayers = getSharedPreferences(ALL_PLAYERS, MODE_PRIVATE);
 
     }
+
+
 }

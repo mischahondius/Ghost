@@ -16,12 +16,13 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Change name of Player 1:"
+        android:text="Change name of Player 1"
         android:id="@+id/textChange1TV"
-        android:background="#ffaf0004"
+        android:background="#ff4646"
         android:textColor="#FFFFFF"
         android:padding="5dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="15dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -33,7 +34,7 @@ Mischa Hondius
         android:layout_marginBottom="10dp"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
         android:padding="5dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="italic" />
 
     <TextView
@@ -44,9 +45,9 @@ Mischa Hondius
         android:id="@+id/textVieworPrevious"
         android:layout_gravity="center_horizontal|left"
         android:padding="5dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"
-        android:background="#ffaf0004"
+        android:background="#ff4646"
         android:textColor="#FFFFFF" />
 
     <Spinner
@@ -54,7 +55,8 @@ Mischa Hondius
         android:layout_height="wrap_content"
         android:id="@+id/spinnerTV1"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:nestedScrollingEnabled="true" />
 
     <Space
         android:layout_width="match_parent"
@@ -65,12 +67,13 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Change name of Player 2:"
+        android:text="Change name of Player 2"
         android:id="@+id/textChange2TV"
         android:padding="5dp"
-        android:background="#ffaf0004"
+        android:background="#ff4646"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="15dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -82,7 +85,7 @@ Mischa Hondius
         android:layout_marginBottom="10dp"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
         android:padding="5dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="italic" />
 
     <TextView
@@ -93,36 +96,41 @@ Mischa Hondius
         android:id="@+id/textVieworPrevious2"
         android:layout_gravity="center_horizontal|left"
         android:padding="5dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:background="#ffaf0004" />
+        android:background="#ff4646" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerTV2"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:nestedScrollingEnabled="true" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginBottom="75dp" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play!"
+        android:text="Play"
         android:id="@+id/submitTV"
         android:onClick="onSubmit"
-        android:nestedScrollingEnabled="true"
+        android:nestedScrollingEnabled="false"
         android:layout_gravity="bottom|right"
-        android:background="#ffaf0004"
-        android:padding="5dp"
+        android:background="#ff4646"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
     
 </LinearLayout>
