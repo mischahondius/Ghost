@@ -4,20 +4,20 @@ Mischa Hondius
 -->
     
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" 
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
     tools:context="nl.mprog.Ghost.change_players"
     android:padding="5dp">
-    
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Change name of Player 1:"
-        android:id="@+id/textChange1TV"
+        android:text="Enter name of player 1"
+        android:id="@+id/textChange1TVFirst"
         android:background="#ffaf0004"
         android:textColor="#FFFFFF"
         android:padding="5dp"
@@ -27,9 +27,8 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name Player 1"
         android:ems="10"
-        android:id="@+id/player1NameTV"
+        android:id="@+id/player1NameTVFirst"
         android:layout_marginBottom="10dp"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
         android:padding="5dp"
@@ -41,7 +40,7 @@ Mischa Hondius
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="OR select previous player"
-        android:id="@+id/textVieworPrevious"
+        android:id="@+id/textVieworPreviousFirst"
         android:layout_gravity="center_horizontal|left"
         android:padding="5dp"
         android:textSize="20dp"
@@ -52,9 +51,10 @@ Mischa Hondius
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerTV1"
+        android:id="@+id/spinnerTV1First"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:spinnerMode="dropdown" />
 
     <Space
         android:layout_width="match_parent"
@@ -65,8 +65,8 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Change name of Player 2:"
-        android:id="@+id/textChange2TV"
+        android:text="Enter name of player 2"
+        android:id="@+id/textChange2TVFirst"
         android:padding="5dp"
         android:background="#ffaf0004"
         android:textColor="#FFFFFF"
@@ -76,9 +76,8 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name Player 2"
         android:ems="10"
-        android:id="@+id/player2NameTV"
+        android:id="@+id/player2NameTVFirst"
         android:layout_marginBottom="10dp"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
         android:padding="5dp"
@@ -90,7 +89,7 @@ Mischa Hondius
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="OR select a previous player"
-        android:id="@+id/textVieworPrevious2"
+        android:id="@+id/textVieworPrevious2First"
         android:layout_gravity="center_horizontal|left"
         android:padding="5dp"
         android:textSize="20dp"
@@ -101,9 +100,10 @@ Mischa Hondius
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerTV2"
+        android:id="@+id/spinnerTV2First"
         android:background="@drawable/abc_ab_bottom_solid_light_holo"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:spinnerMode="dropdown" />
 
     <Space
         android:layout_width="match_parent"
@@ -115,7 +115,7 @@ Mischa Hondius
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Play!"
-        android:id="@+id/submitTV"
+        android:id="@+id/submitTVFirst"
         android:onClick="onSubmit"
         android:nestedScrollingEnabled="true"
         android:layout_gravity="bottom|right"
@@ -124,5 +124,5 @@ Mischa Hondius
         android:textColor="#FFFFFF"
         android:textSize="30dp"
         android:textStyle="bold" />
-    
+
 </LinearLayout>

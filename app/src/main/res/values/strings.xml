@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Mischa Hondius
+6053017
+-->
+    
 <resources>
 
-    <string name="app_name">Ghost</string>
+    <string name="app_name">GHOST</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="Restart">Restart</string>
-    <string name="Opties">Opties</string>
-    <string name="winnaarToast">We hebben een winnaar</string>
-    <string name="weSpelenDoorToast">We spelen door</string>
+    <string name="Opties">Options</string>
+    <string name="winnaarToast">We have a winner!</string>
+    <string name="weSpelenDoorToast">We continue to play!</string>
     <string name="restartText">Restart</string>
     <string name="playersTxt">Players</string>
     <string name="languageTxt">Language</string>
@@ -15,5 +20,6 @@
     <string name="beginTekst">GHOST</string>
     <string name="title_activity_change_players">Players</string>
     <string name="title_activity_high_scores">HighScores</string>
+    <string name="title_activity_first__time">Welcome to GHOST</string>
 
 </resources>

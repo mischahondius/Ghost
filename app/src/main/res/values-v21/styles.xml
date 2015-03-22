@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Mischa Hondius
+6053017
+-->
+    
 <resources>
     <style name="AppTheme" parent="android:Theme.Material.Light">
     </style>

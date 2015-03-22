@@ -1,3 +1,6 @@
+//Mischa Hondius
+//6053017
+
 package nl.mprog.Ghost;
 
 import android.app.Activity;
@@ -59,8 +62,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        //TODO setcontentview -> welcome screen
+               
+        //After Welcome screen ->set gameview
         setContentView(R.layout.activity_main);
 
         //access sharedprefs
@@ -134,6 +137,15 @@ public class MainActivity extends Activity {
         
         //Create new game
         currentGame = new Game(player1, player2, huidigeSpelerTV);
+
+        //IF SAVED instance is NULL
+        if (savedInstanceState == null) {
+            //TODO setcontentview -> welcome screen
+            Intent i = new Intent(this, first_Time.class);
+            i.putExtra("Player 1", currentGame.player1.getName());
+            i.putExtra("Player 2", currentGame.player2.getName());
+            startActivityForResult(i, 202);
+        }
     }
 
     @Override
@@ -367,7 +379,7 @@ public class MainActivity extends Activity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if (resultCode == RESULT_OK && requestCode == 101) {
+        if (resultCode == RESULT_OK && (requestCode == 101 || requestCode == 202)) {
             if (data.hasExtra("Player 1") && data.hasExtra("Player 2")) {
                 player1.setName(data.getExtras().getString("Player 1"));
                 player2.setName(data.getExtras().getString("Player 2"));

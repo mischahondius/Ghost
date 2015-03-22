@@ -1,3 +1,6 @@
+//Mischa Hondius
+//6053017
+
 package nl.mprog.Ghost;
 
 import android.app.Activity;
