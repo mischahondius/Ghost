@@ -7,11 +7,9 @@ public class Name {
 
     // validating name
     static public boolean isValid(String enteredName) {
-        if (enteredName != null && enteredName.length() < 20 && enteredName.length() > 1 ) {
+        if ((enteredName != null) && (enteredName.length() < 20) && (enteredName.length() > 1)){
             return true;
         }
         return false;
     }
-    
-    
 }

@@ -3,10 +3,6 @@
 
 package nl.mprog.Ghost;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 public class CurrentInput{
@@ -44,8 +40,6 @@ public class CurrentInput{
 
         //set view
         view.setText(this.theCurrentInput);
-
-        Log.d("door Clearfunctie heengelopen, currentinput =", this.theCurrentInput);
     }
 
     //Function getSize

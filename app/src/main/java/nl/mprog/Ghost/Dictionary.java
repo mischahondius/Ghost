@@ -19,16 +19,14 @@ public class Dictionary{
     public Dictionary(Context ctx, String GivenLanguage){
               
         //temp hashset
-        HashSet<String> tempHashSet = new HashSet<String>();
+        HashSet<String> tempHashSet = new HashSet<>();
         
         //Standard language = Dutch
         InputStream inputStream = ctx.getResources().openRawResource(R.raw.dutch);
-//        this.language = "NL";
 
         //if Eng meegekregen ->
         if (GivenLanguage.equals("ENG")) {
             inputStream = ctx.getResources().openRawResource(R.raw.english);
-//            this.language = "ENG";
         }
 
         InputStreamReader inputreader = new InputStreamReader(inputStream);
@@ -41,37 +39,12 @@ public class Dictionary{
             }
         } catch (IOException e) {
             return;
-
-            
         }
 
         //Initialize Words    
         this.words = tempHashSet;
-
-    }
-
-    //contains word? function
-    public boolean isWord (String word){
-
-        //if it is in dictionary = word
-        if (this.words.contains(word)){
-            return true;
-        }
-
-        else {
-            // If it does not contain word
-            return false;
-        }
     }
 
     //get Words method
     public HashSet<String> getWords(){return words;}
-
-
-
-    //get size method
-    public int getSize(){
-       return  this.words.size();
-    }
-
 }

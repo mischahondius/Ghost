@@ -9,15 +9,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -27,7 +24,6 @@ public class MainActivity extends Activity {
     //Standard Language is Dutch
     public static final String PREFS = "prefs";
     public static final String CURRENT_PLAYERS = "current_players";
-    public String PREF_LANGUAGE = "NL";
     public SharedPreferences preferenceSettings;
     public SharedPreferences CurrentPlayerPreferenceSettings;
 
@@ -57,7 +53,6 @@ public class MainActivity extends Activity {
 
     //initialize remainingwords
     public HashSet<String> remainingWords;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,12 +105,9 @@ public class MainActivity extends Activity {
             int oldPointsPlayer1 = CurrentPlayerPreferenceSettings.getInt("Player 1_Points", 0);
             int oldPointsPlayer2 = CurrentPlayerPreferenceSettings.getInt("Player 2_Points", 0);
 
-
             //reload players
             player1.reLoad(oldNamePlayer1, oldPointsPlayer1);
-            player2.reLoad(oldNamePlayer2, oldPointsPlayer2);
-                        
-    
+            player2.reLoad(oldNamePlayer2, oldPointsPlayer2);                  
         }
         
         //ELSE put hardcoded players there, in order to create players in prefs
@@ -127,10 +119,8 @@ public class MainActivity extends Activity {
             preferenceEditor.putInt("Player 1_Points", player1.getPoints());
             preferenceEditor.putString("Player 2_Name", player2.getName());
             preferenceEditor.putInt("Player 2_Points", player2.getPoints());
-
             preferenceEditor.commit();
         }
-
 
         //Get textView huidigeSpelerTV
         huidigeSpelerTV = (TextView) findViewById(R.id.huidigeSpeler);
@@ -141,7 +131,7 @@ public class MainActivity extends Activity {
         //IF SAVED instance is NULL
         if (savedInstanceState == null) {
             //TODO setcontentview -> welcome screen
-            Intent i = new Intent(this, first_Time.class);
+            Intent i = new Intent(this, FirstTimeActivity.class);
             i.putExtra("Player 1", currentGame.player1.getName());
             i.putExtra("Player 2", currentGame.player2.getName());
             startActivityForResult(i, 202);
@@ -164,18 +154,17 @@ public class MainActivity extends Activity {
 
         //If Highscores selected
         if (id == R.id.highscores){
-            Intent i = new Intent(this, HighScores.class);
+            Intent i = new Intent(this, HighScoresActivity.class);
             startActivity(i);
         }
         
         //Players option Clicked
         if (id == R.id.players){
 
-            Intent i = new Intent(this, change_players.class);
+            Intent i = new Intent(this, ChangePlayersActivity.class);
             i.putExtra("Player 1", currentGame.player1.getName());
             i.putExtra("Player 2", currentGame.player2.getName());
             startActivityForResult(i, 101);
-
         }
         
         //Restart option clicked
@@ -234,22 +223,17 @@ public class MainActivity extends Activity {
             return super.onOptionsItemSelected(item);
     }
     
-    //on close etc
-
     @Override
     protected void onStop() {
         super.onStop();
 
         //Put players names and points in sharedprefs
-        //put hardcoded names and points in sharedprefs
         SharedPreferences.Editor preferenceEditor = CurrentPlayerPreferenceSettings.edit();
         preferenceEditor.putString("Player 1_Name", currentGame.player1.getName());
         preferenceEditor.putInt("Player 1_Points", currentGame.player1.getPoints());
         preferenceEditor.putString("Player 2_Name", currentGame.player2.getName());
         preferenceEditor.putInt("Player 2_Points", currentGame.player2.getPoints());
-
-        preferenceEditor.commit();
-        
+        preferenceEditor.commit();       
     }
 
     //Restart method
@@ -266,12 +250,8 @@ public class MainActivity extends Activity {
         //load in new dictionary
         currentDictionary = new Dictionary(this, preferenceSettings.getString("PREF_LANGUAGE", "NL"));
         
-        //check if language is changed
-        Log.i("Language is", preferenceSettings.getString("PREF_LANGUAGE", "NL"));
-
         //Refill remaining words
         remainingWords = currentDictionary.getWords();
-
     }
 
     //on letter clicked
@@ -287,7 +267,6 @@ public class MainActivity extends Activity {
         //iterate through set, throw away unnecessary words
         Iterator<String> itr = remainingWords.iterator();
         while (itr.hasNext()) {
-
    
             //Load next word into iterator element
             String tmpWoord = itr.next();
@@ -304,13 +283,11 @@ public class MainActivity extends Activity {
 
                 //remove element
                 itr.remove();
-            }
-            
+            }            
         }
 
-        //check whether remaining wordslist is is now empty or 1
-        //If list is Empty or 1, false letter or correct word -> Win for opponent
-//      if ((remainingWords.isEmpty()) || (remainingWords.size() == 1)) {
+        //check whether remaining wordlist is is now empty or 1 of length
+        //If list is Empty --> Win for opponent
         if (remainingWords.isEmpty()) {
 
             //Opponent won, appoint a point to opponent
@@ -322,8 +299,7 @@ public class MainActivity extends Activity {
             //Countdown and restart in order to keep hold of the current word
             new android.os.CountDownTimer(1500, 1500) {
 
-                public void onTick(long millisUntilFinished) {
-                }
+                public void onTick(long millisUntilFinished) {}
 
                 public void onFinish() {
                     restart();
@@ -331,8 +307,6 @@ public class MainActivity extends Activity {
             }.start();            
         }
         
-
-
         //else, we continue to play
         //not empty, so 1 or more words
         else {
@@ -343,8 +317,7 @@ public class MainActivity extends Activity {
                 //in dictionary as single word??
                 if (remainingWords.contains(theCurrentWord.get())) {
 
-                    //if in dictionary, FAIL! Win for opponent
-                    //Opponent won, appoint a point to opponent
+                    //if in dictionary, FAIL! Win for opponent, point for opponent
                     currentGame.PtToOpponent();
 
                     //Toast winner and how many points winner has in total
@@ -353,14 +326,14 @@ public class MainActivity extends Activity {
                     //Countdown and restart in order to keep hold of the current word
                     new android.os.CountDownTimer(1500, 1500) {
 
-                        public void onTick(long millisUntilFinished) {
-                        }
+                        public void onTick(long millisUntilFinished) {}
 
                         public void onFinish() {
                             restart();
                         }
                     }.start();
                 }
+        
                 //else, 4 letters or more and more words left -> play through
                 else {
                     //Change turn, change turn TV
@@ -370,13 +343,13 @@ public class MainActivity extends Activity {
 
             //Else if smaller than 4, play through
             else {
-
                 //Change turn, change turn TV
                 currentGame.changeTurn();
             }
         }
     }
 
+    //Get intent back
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (resultCode == RESULT_OK && (requestCode == 101 || requestCode == 202)) {

@@ -9,7 +9,7 @@ Mischa Hondius
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context="nl.mprog.Ghost.change_players"
+    tools:context="nl.mprog.Ghost.ChangePlayersActivity"
     android:padding="5dp">
 
     <TextView

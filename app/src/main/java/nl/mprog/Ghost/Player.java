@@ -6,8 +6,6 @@ package nl.mprog.Ghost;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.UUID;
-
 public class Player {
     public static final String ALL_PLAYERS = "all_players";
     public SharedPreferences allPlayers;
@@ -26,7 +24,6 @@ public class Player {
 
         //save to highscores
         saveToHighscores();
-
     }
     
     public void reLoad (String oldName, int oldPoints){
@@ -62,7 +59,4 @@ public class Player {
         editor.putInt(this.name, this.points);
         editor.commit();
     }
-    
-    
-
 }

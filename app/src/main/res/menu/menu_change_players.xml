@@ -3,7 +3,5 @@ Mischa Hondius
 6053017
 -->
     
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="nl.mprog.Ghost.change_players">
+<menu xmlns:tools="http://schemas.android.com/tools" tools:context="nl.mprog.Ghost.ChangePlayersActivity">
 </menu>
