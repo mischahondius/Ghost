@@ -19,7 +19,7 @@ Mischa Hondius
     <string name="highscoresTxt">Highscores</string>
     <string name="beginTekst">GHOST</string>
     <string name="title_activity_change_players">Players</string>
-    <string name="title_activity_high_scores">HighScores</string>
+    <string name="title_activity_high_scores">Highscores</string>
     <string name="title_activity_first__time">Welcome to Ghost</string>
 
 </resources>
