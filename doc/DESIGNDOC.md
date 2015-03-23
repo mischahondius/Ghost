@@ -6,6 +6,12 @@
 Note: I've decided not to show a Congratulations screen, nor the highscore screen after every win. This in order to keep the user in the flow of gameplay. The reason why someone has won a game is not really interesting. 99% of the time the players will know why they've won or lost. I did have to add a function that freezes the screen for a second before continuing the game, in order to give players the chance to see what word they've created. This is I beleive enough information on the reason of winning or loosing.<br>
 I know showing these screens were in the requirements. I think I've sufficiently shown to be able to redirect to new screens, and or give information along to new activities through intents. Therefore I hope this design decision is appreciated rather than judged.
 
+<img src="/doc/WelcomeScreen1.png" width="400">
+<img src="/doc/WelcomeScreen1.png" width="400">
+![mockup 1](/doc/WelcomeScreen1.png)
+![mockup 2](/doc/WelcomeScreen2.png)
+![mockup 3](/doc/WelcomeScreen3.png)
+![mockup 4](/doc/WelcomeScreen4.png)
 <h5><b>Screen 1: Welcome screen</b></h5>
 <b>Controller: </b> FirsTimeActivity <br>
 <b>Layout: </b> activity_first_time <br>
