@@ -78,7 +78,24 @@ I know showing these screens were in the requirements. I think I've sufficiently
 * NOTE: No sorting, due to lack of time. Would have probably casted the HashMap values to a TreeMap in order to be able to sort.
 * NOTE: Tried for a really really long time to get an adapter to work for these keys and values in a HashMap. Couldn't figure out how, chose to keep it simple and functional in the end. It does show all players and scores.
 
+<h4><b>Model classes</b></h4><br>
+* NOTE: I now get the difference between PUBLIC and PRIVATE classes and methods, however I see that I haven't changed them. To be sure I started writing all as PUBLIC. 
 
-a list of model classes, public and private fields, and public methods (and their return types and/or arguments) that you’ve decided to implement
+<h5><b>CurrentInput</b></h5> -> Saves a string and it's size. Functions: addLetter, get, clear and getSize. <br>
+- addLetter -> adds a letter to the current word fragment. Updates textview and increases currentInput size by 1.
+- get -> returns the current wordfragment.
+- clear -> Clears the wordfragment, sets the size to zero and clears the textview.
+- getSize -> Returns the size of the current wordfragment.
 
-a list of any APIs and frameworks that have not yet been named in the above, along with a description of what these will be used for
+<h5><b>Dictionary</b></h5> -> Contains a HashSet of words (strings), as with a real dictionary. Only one method: getWords -> returns a HashSet of Dictionary words of that Dictionary. <br>
+
+<h5><b>Game</h5></b> -> As in a real game, every game instance contains two players, keeps track of who's turn it is and updates the textviews accordingly. 
+- getTurn -> Returns the Player who's turn it is in that instance and in that moment of a game.
+- changeTurn -> Switches the turn to the opponent and updates the Textview accordingly.
+- ptToOpponent -> Changes the turn and adds a point to the opposing Player in that game. 
+- updateTVTurn -> Updates the textview of who's turn it is, by setting it to the player's who's turn it is at that moment in that instance of a game.
+- changePlayers -> Takes two arguments: two players. Everytime the players playing in the current game instance are changed, this function is called to update the currently playing players in that game. It als saves these new or appended Players to SharedPreferences for savekeeping through the method saveToHighScores, belonging to the Player model class.
+
+<h5><b>Player</h5></b>
+
+
