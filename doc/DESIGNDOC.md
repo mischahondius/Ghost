@@ -96,6 +96,10 @@ I know showing these screens were in the requirements. I think I've sufficiently
 - updateTVTurn -> Updates the textview of who's turn it is, by setting it to the player's who's turn it is at that moment in that instance of a game.
 - changePlayers -> Takes two arguments: two players. Everytime the players playing in the current game instance are changed, this function is called to update the currently playing players in that game. It als saves these new or appended Players to SharedPreferences for savekeeping through the method saveToHighScores, belonging to the Player model class.
 
-<h5><b>Player</h5></b>
-
-
+<h5><b>Player</h5></b> -> As with a real Player, each instance of a Player has a name (String) and keeps track of how many points (int) he or she has earned. The following methods can be called upon a Player: 
+- reLoad -> Takes two arguments: a name (String) and the points (int) it has to appoint to a player. It gives a player instance the name and points values it takes in as arguments. This method is used in order to reload players back from memory (SharedPreferences).
+- getName -> returns the current name of that instance of a Player.
+- setName -> Takes one argument: a new name. Sets the name of a Player to the new name.
+- givePoint -> Gives a point to that instance of a player.
+- getPoints -> Returns points for that instance of a player.
+- saveToHighscores -> Saves the Player and his/her points to SharedPreferences for permanent storage.
