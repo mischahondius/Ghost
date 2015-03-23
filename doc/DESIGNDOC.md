@@ -14,7 +14,7 @@ I know showing these screens were in the requirements. I think I've sufficiently
 <h5><b>Screen 1: Welcome screen</b></h5>
 <b>Controller: </b> FirsTimeActivity <br>
 <b>Layout: </b> activity_first_time <br>
-<b>Model classes: </b> No Game-specific model classes involved here. Player names and new players are amended through the main controller in MainActivity. <br>
+<b>Model classes: </b> Name public static method class, checks name validation. Player names and new players are amended through the main controller in MainActivity. <br>
 <b>Platform specific control: </b> Validation error messages. Toast message. Actionbar, no menu options used here in order to force the user into entering correct credentials before being able to play. <br>
 <b>Decisions: </b> 
 * Position of the play button -> at strategic right-hand thumb position.
@@ -27,7 +27,25 @@ I know showing these screens were in the requirements. I think I've sufficiently
 * Toast message implemented when the players want to play under the exact same names.
 * NOTE: Couldn't get the dropdown down-arrow icon to work, I know it doesn't look like a dropdown at the moment. 
 * NOTE: I'm aware of a little bug in the dropdown -> It does not change the textview when the first option of the dropdown is selected. Only once first a second option is selected and than the first option. 
-* NOTE: I would have included a mutually exclusivity in both spinners in player name choice, due to a lack of time this was not implemented.
+* NOTE: I would have included a mutually exclusivity in both spinners in player name choice, due to a lack of time this was not implemented. <br><br>
+
+<img src="/doc/Gameplay1.png" width="400">
+<img src="/doc/Gameplay2.png" width="400">
+
+<h5><b>Screen 2: Gameplay</b></h5>
+<b>Controller: </b> MainActivity <br>
+<b>Layout: </b> activity_main <br>
+<b>Model classes involved: </b> Player, Game, CurrentInput, Dictionary. Controls all model classes as main gameplay controller.<br>
+<b>Platform specific control: </b>Toast messages. Actionbar menu options.<br>
+<b>Decisions: </b> 
+* Choice for a neutral, soft, but not totally blank background color.
+* Most important information to know during gameplay is: "Who's turn is it?" and the current word fragment. Hence those two elements are placed on top of the screen. The name of the player who needs to make a move is red, to make it absolutely clear who needs to play.
+* There is a one second (with computing a few seconds) relay built in after a win, as to give the players a chance to check the correct word or the incorrect word fragment that has been entered.
+* As described above, there was a specific choice made to enhance gamplay, not to break the game's flow by showing two screens after each win. A win is not THAT exceptional in this game and the interval is on average only 20 seconds or less.
+* 
+
+
+
 
 a list of model classes, public and private fields, and public methods (and their return types and/or arguments) that you’ve decided to implement
 
