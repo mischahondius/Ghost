@@ -2,7 +2,7 @@
 <b>Summary: </b> Ghost is a two-player wordgame in which players take turns adding letters to a growing word fragment, trying not to be the one to complete a valid word. <br>
 <b>Student: </b> Mischa Hondius, ID: 6053017.<br>
 
-**NOTE: Please have a look at the Design Doc in [/doc /doc/DESIGNDOC.md] 
+**NOTE: Please have a look at the Design Doc in <a href="/doc/DESIGNDOC.md"> /doc/DESIGNDOC.md</a>  
 
 <b>Rules </b><br>
 * Players form a word by alternating turns entering a letter, which is added on to the end of the current word fragment. There are two ways to lose Ghost:
