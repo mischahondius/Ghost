@@ -31,20 +31,52 @@ I know showing these screens were in the requirements. I think I've sufficiently
 
 <img src="/doc/Gameplay1.png" width="400">
 <img src="/doc/Gameplay2.png" width="400">
+<img src="/doc/Menu1.png" width="400">
+<img src="/doc/Language.png" width="400">
+<img src="/doc/Language2.png" width="400">
 
 <h5><b>Screen 2: Gameplay</b></h5>
 <b>Controller: </b> MainActivity <br>
 <b>Layout: </b> activity_main <br>
 <b>Model classes involved: </b> Player, Game, CurrentInput, Dictionary. Controls all model classes as main gameplay controller.<br>
-<b>Platform specific control: </b>Toast messages. Actionbar menu options.<br>
+<b>Platform specific control: </b>Toast messages. Actionbar menu options. Dialog pop-up overlay.<br>
 <b>Decisions: </b> 
 * Choice for a neutral, soft, but not totally blank background color.
+* Choice for Starting of a game with GHOST as set input, in order to make clear that text is shown in that field. As opposed to showing a blank field.
 * Most important information to know during gameplay is: "Who's turn is it?" and the current word fragment. Hence those two elements are placed on top of the screen. The name of the player who needs to make a move is red, to make it absolutely clear who needs to play.
 * There is a one second (with computing a few seconds) relay built in after a win, as to give the players a chance to check the correct word or the incorrect word fragment that has been entered.
 * As described above, there was a specific choice made to enhance gamplay, not to break the game's flow by showing two screens after each win. A win is not THAT exceptional in this game and the interval is on average only 20 seconds or less.
-* 
+* I've chosen for a custom on-screen, non-android keyboard, in order not having to handle validation every move. But more importantly, the players are shown all possible keys at once (choices). No unnecessary keys are shown, this enhances gameplay. Also, the buttons are bigger than a regular android keyboard, which enhances quickness of input as well.
+* I chose not to show the reason of winning, but rather who won and how the extra points affects his total score. I believe this enhances competitivty between two players. Also, it gives an extra drive to keep on playing directly, as opposed to being forced to skip through two screens after each win.
+* NOTE: Unfortunately I've had some troubles setting up the correct layout of the custom keyboard. I would have liked 5 columns, so that the win Toast message would not have overlayed the keyboard. 
+* MENU OPTIONS: 
+- Restart -> New game is created. Directly clears current word fragment, does not appoint a point to any player. Random player is given the next turn.
+- Players -> Change current players' names, or current players altogether, or a combination of those options. 
+- Language -> Change the dictionary language of the game. A simple overlay dialog was chosen, since there are onyl two options. No need to go to an entirely new screen. This seemed to me like a neat, quick, and clear way of letting the players chose the dictionary language. A toast message is shown after a language is selected in order to confirm the current language.
+- Highscores -> Check out highscores.
 
+<img src="/doc/ChangePlayers1.png" width="400">
 
+<h5><b>Screen 3: Change Players</b></h5>
+<b>Controller: </b> ChangePlayersActivity <br>
+<b>Layout: </b> activity_change_players <br>
+<b>Model classes involved: </b> See Screen 1.<br>
+<b>Platform specific control: </b>See Screen 1.<br>
+<b>Decisions: </b> 
+* See Screen 1.
+* Decided to label the name textfield option: "Change name of player n" instead of "Enter name of player n" in the Welcome Screen. This is because the users are already playing and have already entered a name. The players are there to change names or players altogether, not to enter a name.
+
+<img src="/doc/Highscores.png" width="400">
+
+<h5><b>Screen 4: Highscores</b></h5>
+<b>Controller: </b> HighScoresActivity <br>
+<b>Layout: </b> activity_high_scores <br>
+<b>Model classes involved: </b> No model classes directly involved here.<br>
+<b>Platform specific control: </b> Users have use the "back-button" on their android device in order to go back to the game. The design choice here was to utilize platform specific controls, and to simplify. No back button needed.<br>
+<b>Decisions: </b> 
+* NOTE: Extremely basic view of highscores due to lack of time.
+* NOTE: No sorting, due to lack of time. Would have probably casted the HashMap values to a TreeMap in order to be able to sort.
+* NOTE: Tried for a really really long time to get an adapter to work for these keys and values in a HashMap. Couldn't figure out how, chose to keep it simple and functional in the end. It does show all players and scores.
 
 
 a list of model classes, public and private fields, and public methods (and their return types and/or arguments) that you’ve decided to implement
