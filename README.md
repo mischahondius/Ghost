@@ -8,20 +8,20 @@
 1. Forming a word longer than 3 letters ("PEA" is ok, but "PEAR" is not).
 2. Creating a fragment (of any size) which cannot become a word by adding more letters (for example, "QZ").
 
-Features 
+<b>Features </b> 
 * Choice between two dictionaries: Dutch or English.
 * Highscore listings of all previous players.
 
-Platform:  SDK API level of 21 (Android 5).
-Layout: Vertical mode, no landscape.
+<b>Platform: </b>  SDK API level of 21 (Android 5).
+<b>Layout: </b> Vertical mode, no landscape.
 
-Technologies used:
+<b>Technologies used: </b>
 Java, Android App Studio 1.0.2, XML, Gradle.
 
-Libraries used:
+<b>Libraries used: </b>
 Android API 21 Platform
 Java 1.7.0_75
 
-Sketches:
+<b>Sketches </b>
 ![mockup 1](/doc/1.jpg)
 ![mockup 2](/doc/2.jpg)
